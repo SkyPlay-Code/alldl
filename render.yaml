@@ -1,17 +1,12 @@
-# The buildpacks key is at the root level, same as 'services'
-buildpacks:
-  - url: https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest
+# render.yaml - FINAL DOCKER VERSION
 
 services:
-  # This is our main web server
   - type: web
     name: universal-downloader
-    runtime: python
+    # Tell Render to look for a Dockerfile in your project
+    runtime: docker
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
-    # No buildpacks key here anymore
-    envVars:
-      # Sets the python version
-      - key: PYTHON_VERSION
-        value: 3.11.4
+    # Health check for Render to know your app is running
+    healthCheckPath: /
+    # Auto-deploy when you push to GitHub
+    autoDeploy: true
