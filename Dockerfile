@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install ffmpeg and other build tools
 # apt-get update && apt-get install -y: Updates the package list and installs ffmpeg.
-RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg git
 
 # Copy the file that lists our Python dependencies
 COPY requirements.txt .
