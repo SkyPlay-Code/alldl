@@ -1,0 +1,14 @@
+services:
+  # This is our main web server
+  - type: web
+    name: universal-downloader
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    buildpacks:
+      - url: https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest
+    envVars:
+      # Sets the python version
+      - key: PYTHON_VERSION
+        value: 3.11.4
